@@ -286,224 +286,78 @@ if (fs.existsSync(POSTS_DIR)) {
   process.exit(1);
 }
 
-// Function to initialize the Express server
-// Remove the first mainTemplate and cssContent declarations at the top
-// Keep only the ones inside initServer()
+// Configuration
+const BUILD_FOLDER = path.join(__dirname, 'build'); // Change to build directory
 
-// Inside initServer(), update the CSS content
-// At the top of the file, after the directory creation
-// Write CSS file first
-const cssPath = path.join(PUBLIC_FOLDER, 'style.css');
+// Create necessary directories
+if (!fs.existsSync(BUILD_FOLDER)) {
+  fs.mkdirSync(BUILD_FOLDER, { recursive: true });
+}
+
+// Write CSS file to the build directory
+const cssPath = path.join(BUILD_FOLDER, 'style.css');
 fs.writeFileSync(cssPath, cssContent, 'utf8');
 
-// Remove the CSS writing from initServer()
-function initServer() {
-  // Set static folder
-  app.use(express.static(PUBLIC_FOLDER));
-  
-  // Homepage route
-  // Add at the top with other constants
-  const POSTS_PER_PAGE = 10;
-  
-  // Update the homepage route
-  app.get('/', (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const startIndex = (page - 1) * POSTS_PER_PAGE;
-    const endIndex = startIndex + POSTS_PER_PAGE;
-    const totalPages = Math.ceil(postsData.length / POSTS_PER_PAGE);
-    
-    const paginatedPosts = postsData.slice(startIndex, endIndex);
-    
-    const postListHTML = `
-      <div class="post-list">
-        ${paginatedPosts.map(post => {
-          const postDate = new Date(post.date);
-          const displayDate = isNaN(postDate.getTime()) ? new Date('1983-01-01') : postDate;
-    
-          return `
-            <div class="post-item">
-              <h3 class="post-title">
-                <a href="/post/${post.slug}">${post.title}</a>
-              </h3>
-              <div class="post-date">
-                ${displayDate.toLocaleDateString('pt-BR')}
-              </div>
-            </div>
-          `;
-        }).join('')}
-      </div>
-      <div class="pagination">
-        <ul class="pagination-list">
-          ${page > 1 ? `<li><a href="/?page=${page - 1}" class="pagination-link">&larr; Previous</a></li>` : ''}
-          ${Array.from({ length: totalPages }, (_, i) => i + 1).map(num => 
-            num === page
-              ? `<li><span class="pagination-current">${num}</span></li>`
-              : `<li><a href="/?page=${num}" class="pagination-link">${num}</a></li>`
-          ).join('')}
-          ${page < totalPages ? `<li><a href="/?page=${page + 1}" class="pagination-link">Next &rarr;</a></li>` : ''}
-        </ul>
-      </div>
-    `;
-    
-    const renderedPage = renderTemplate(
-      fs.readFileSync(path.join(TEMPLATES_FOLDER, 'main.html'), 'utf8'),
-      {
-        pageTitle: 'Blog Home',
-        content: postListHTML
-      }
-    );
-    
-    res.send(renderedPage);
+// Write HTML template to the build directory
+fs.writeFileSync(path.join(BUILD_FOLDER, 'index.html'), mainTemplate, 'utf8');
+
+// Function to generate static files
+function generateStaticFiles() {
+  // Generate static files logic here
+  // For example, generate HTML pages for each post
+  postsData.forEach(post => {
+    const postHTML = renderTemplate(mainTemplate, {
+      pageTitle: post.title,
+      content: post.content
+    });
+    fs.writeFileSync(path.join(BUILD_FOLDER, `${post.slug}.html`), postHTML, 'utf8');
   });
-  
-  // Individual post route
-  app.get('/post/:slug', (req, res) => {
-    const slug = req.params.slug;
-    const post = postsData.find(p => (p.slug === slug || p.id === slug));
-    
-    if (!post) {
-      return res.status(404).send('Post not found');
-    }
-    
-    const postHTML = `
-      <article>
-        <h2>${post.title}</h2>
-        <div class="post-date">
-          ${new Date(post.publishedDate).toLocaleDateString('pt-BR')}
-        </div>
-        <div class="post-content">
-          ${post.content}
-        </div>
-        ${post.tags && post.tags.length > 0 ? `
-          <div class="post-tags">
-            <strong>Tags:</strong> ${post.tags.join(', ')}
-          </div>
-        ` : ''}
-        <p><a href="/">&larr; Voltar para a lista de posts</a></p>
-      </article>
-    `;
-    
-    const renderedPage = renderTemplate(
-      fs.readFileSync(path.join(TEMPLATES_FOLDER, 'main.html'), 'utf8'),
-      {
-        pageTitle: post.title,
-        content: postHTML
-      }
-    );
-    
-    res.send(renderedPage);
-  });
-  
-  // About page route
-  app.get('/about', (req, res) => {
-    const aboutHTML = `
-      <h2>About This Person</h2>
-      <p>Stay a while and listen.</p>
-      <p>I'm a technical writer @ senhasegura, where I work with information security mainly. On my days off, I start projects I usually never finish. I can say that I'm a communist programmer with a background in many fields of IT, linguistics, and literature.</p>
-      <br><h3>Some Projects</h3><br>
-      <ul>
-        <li>I am trying to be a contributor to the Techscriptor, an app that tries to be the free and open source Hemingway App developed by Constantin Brîncoveanu.</li>
-        <li>I am also trying to keep developing the Podrain app. This is a PWA podcast app developed by Joe Sweeney.</li>
-        <li>If you'd like, you can access my collection of everyday use "tools". These tools include simple JS scripts that can help you save time (along with the Podrain app and a random number generator for lotteries). Feel free to visit Paulo Duarte Tools @ Netlify.</li>
-        <li>I'm a hobbyist game-dev also. You can check a few games I made here and here at itch.io (unity ones).</li>
-        <li>From the Techscriptor project, I made a pt-BR editor. I called Verbalize and you can check the post here, the live version here and the source-code here.</li>
-        <li>If you want, you can check my portfolio/CV here.</li>
-      </ul>
-    `;
-    
-    const renderedPage = renderTemplate(
-      fs.readFileSync(path.join(TEMPLATES_FOLDER, 'main.html'), 'utf8'),
-      {
-        pageTitle: 'About',
-        content: aboutHTML
-      }
-    );
-    
-    res.send(renderedPage);
-  });
-  
-  // Search route
-  app.get('/search', (req, res) => {
-    const query = req.query.q?.toLowerCase();
-    
-    if (!query) {
-      return res.redirect('/');
-    }
-    
-    const filteredPosts = postsData.filter(post => 
-      post.title.toLowerCase().includes(query) || 
-      post.content.toLowerCase().includes(query) ||
-      (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query)))
-    );
-    
-    const searchResultsHTML = `
-      <h2>Resultados da busca: "${query}"</h2>
-      
-      ${filteredPosts.length === 0 ? '<p>Nenhum resultado encontrado.</p>' : `
-        <div class="post-list">
-          ${filteredPosts.map(post => `
-            <div class="post-item">
-              <h3 class="post-title">
-                <a href="/post/${post.slug || post.id}">${post.title}</a>
-              </h3>
-              <div class="post-date">
-                ${new Date(post.publishedDate).toLocaleDateString('pt-BR')}
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      `}
-      
-      <p><a href="/">&larr; Voltar para a lista de posts</a></p>
-    `;
-    
-    const renderedPage = renderTemplate(
-      fs.readFileSync(path.join(TEMPLATES_FOLDER, 'main.html'), 'utf8'),
-      {
-        pageTitle: `Search: ${query}`,
-        content: searchResultsHTML
-      }
-    );
-    
-    res.send(renderedPage);
-  });
-  
-  // Start the server
-  // Remove the app.listen call from here
+
+  console.log('Static files generated successfully in the build directory.');
 }
+
+// Generate static files
+generateStaticFiles();
+
+// Remove server initialization code
+// function initServer() { ... }
+// function startServer() { ... }
+
+// Start the server
+// Remove the app.listen call from here
+// Remove the extra closing brace here
+// }
 
 // Function to create server with automatic port handling
 function startServer() {
-  // Initialize the Express server with all routes
-  initServer();
-
-  // Create server instance without immediately binding to port
-  const server = require('http').createServer(app);
+  // Remove the call to initServer() since it's not defined
+  // Remove the server initialization code if not needed
+  // const server = require('http').createServer(app);
 
   // Error handler for the server
-  server.on('error', (error) => {
-    if (error.code === 'EADDRINUSE') {
-      console.log(`Port ${PORT} is already in use. Trying on port ${PORT + 1}...`);
-      // Try the next port by incrementing by 1
-      setTimeout(() => {
-        server.close();
-        // Try next port
-        process.env.PORT = Number(PORT) + 1;
-        startServer();
-      }, 1000);
-    } else {
-      console.error('Server error:', error);
-      process.exit(1);
-    }
-  });
+  // server.on('error', (error) => {
+  //   if (error.code === 'EADDRINUSE') {
+  //     console.log(`Port ${PORT} is already in use. Trying on port ${PORT + 1}...`);
+  //     // Try the next port by incrementing by 1
+  //     setTimeout(() => {
+  //       server.close();
+  //       // Try next port
+  //       process.env.PORT = Number(PORT) + 1;
+  //       startServer();
+  //     }, 1000);
+  //   } else {
+  //     console.error('Server error:', error);
+  //     process.exit(1);
+  //   }
+  // });
 
   // Try to listen on the specified port
-  const currentPort = process.env.PORT || PORT;
-  server.listen(currentPort, () => {
-    console.log(`Blog server running at http://localhost:${currentPort}`);
-    console.log(`Total posts loaded: ${postsData.length}`);
-  });
+  // const currentPort = process.env.PORT || PORT;
+  // server.listen(currentPort, () => {
+  //   console.log(`Blog server running at http://localhost:${currentPort}`);
+  //   console.log(`Total posts loaded: ${postsData.length}`);
+  // });
 }
 
-// Start the server
-startServer();
+// Remove the call to startServer() if not needed
+// startServer();

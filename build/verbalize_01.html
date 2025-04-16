@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verbalize 0.1</title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title-container">
+        <h1>Here be dragons</h1>
+      </div>
+      <div class="nav-container">
+        <nav>
+          <a href="/">Home</a> | <a href="/about">About</a>
+        </nav>
+      </div>
+      <div class="search-container">
+        <form class="search-form" action="/search" method="GET">
+          <input type="text" name="q" placeholder="Busca">
+          <button type="submit">Buscar</button>
+        </form>
+      </div>
+    </header>
+    
+    <main class="content-container">
+      <p>I&#39;m a linguist and technical writer (tech writer, dev writer, documenter, technical editor, etc.), and I&#39;ve always used Hemingway for my English writing. The problem was that I&#39;d never found a text editor capable of suggesting possible improvements to a text in Brazilian Portuguese.</p>
+<p>Years passed and a few weeks ago I finally had the time to create a fork of <a href="https://github.com/cbrincoveanu/techscriptor">Techscriptor</a> with some interface improvements and adapt it to Brazilian Portuguese. That&#39;s how version 0.1 of Verbalize was born.</p>
+<h2>What does it do?</h2>
+<p>In a basic and summarized way, you can upload a file from your computer (in <code>md</code> or <code>txt</code>, for now) and the editor, besides allowing you to actually edit, will give you hints on how to improve the text (long sentences, complex words, jargon, adjectives and other things we should avoid in texts, especially technical ones).</p>
+<p>Once edited, you can download the file in <code>md</code> format.</p>
+<h2>Access</h2>
+<p>The application can be installed (Electron), accessed via the web, or you can download the code from GitHub and run it locally in your browser.</p>
+<ul>
+<li><a href="https://verbalize-editor.netlify.app/">Live version</a> </li>
+<li><a href="https://github.com/mtgr18977/Verbalize">Source Code</a></li>
+</ul>
+<h2>Improvements</h2>
+<p>I have a few &#39;next steps&#39; in mind:</p>
+<ul>
+<li>Google Drive/Onedrive integration. </li>
+<li>Ability to upload a custom rules file. </li>
+<li>Allow offline use. </li>
+<li>Improve the GUI.</li>
+<li>Obisidian plugin (almost done).</li>
+</ul>
+<p>--</p>
+<p>I also made an <a href="inkdrop.app">Inkdrop</a> plugin :D
+You can <a href="https://github.com/mtgr18977/verbalize-inkdrop">check it out on Github</a></p>
+
+    </main>
+  </div>
+  <script>
+    // Simple client-side JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Blog loaded successfully!');
+    });
+  </script>
+</body>
+</html>

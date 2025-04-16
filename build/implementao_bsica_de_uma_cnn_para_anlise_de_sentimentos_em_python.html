@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Implementação Básica de uma CNN para Análise de Sentimentos em Python</title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title-container">
+        <h1>Here be dragons</h1>
+      </div>
+      <div class="nav-container">
+        <nav>
+          <a href="/">Home</a> | <a href="/about">About</a>
+        </nav>
+      </div>
+      <div class="search-container">
+        <form class="search-form" action="/search" method="GET">
+          <input type="text" name="q" placeholder="Busca">
+          <button type="submit">Buscar</button>
+        </form>
+      </div>
+    </header>
+    
+    <main class="content-container">
+      <p><strong>E se</strong> se eu resolvesse, de formam mambembe, implementar uma CNN em Python com ajuda do ChatGPT?</p>
+<p>Ficou assim.</p>
+<h3>1. Instalar as Bibliotecas Necessárias</h3>
+<p>Certifique-se de ter o TensorFlow e Keras instalados em seu ambiente. Eles podem ser instalados usando o seguinte comando:</p>
+<pre><code class="language-bash">pip install tensorflow
+</code></pre>
+<h3>2. Importar as Bibliotecas</h3>
+<p>No início do seu script Python, importe as bibliotecas necessárias:</p>
+<pre><code class="language-python">import numpy as np
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, Conv1D, GlobalMaxPooling1D, Dense
+from tensorflow.keras.datasets import imdb
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+</code></pre>
+<h2>3. Carregar e Preparar os Dados</h2>
+<p>Carregue o conjunto de dados IMDb e prepare as sequências de texto:</p>
+<pre><code class="language-python"># Definir parâmetros
+max_features = 5000  # Número máximo de palavras
+max_len = 500  # Tamanho máximo de cada texto
+
+# Carregar o conjunto de dados IMDb
+(X_train, y_train), (X_test, y_test) = imdb.load_data(num_words=max_features)
+
+# Preencher ou truncar as sequências para o mesmo comprimento
+X_train = pad_sequences(X_train, maxlen=max_len)
+X_test = pad_sequences(X_test, maxlen=max_len)
+</code></pre>
+<h3>4. Construir o Modelo da CNN</h3>
+<p>Defina a arquitetura da rede neural convolucional:</p>
+<pre><code class="language-python">model = Sequential()
+model.add(Embedding(input_dim=max_features, output_dim=128, input_length=max_len))
+model.add(Conv1D(filters=64, kernel_size=5, activation=&#39;relu&#39;))
+model.add(GlobalMaxPooling1D())
+model.add(Dense(10, activation=&#39;relu&#39;))
+model.add(Dense(1, activation=&#39;sigmoid&#39;))
+</code></pre>
+<h3>5. Compilar o Modelo</h3>
+<p>Compile o modelo configurando o otimizador, a função de perda e as métricas de avaliação:</p>
+<pre><code class="language-python">model.compile(optimizer=&#39;adam&#39;, loss=&#39;binary_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
+</code></pre>
+<h3>6. Treinar o Modelo</h3>
+<p>Treine o modelo com os dados de treino:</p>
+<pre><code class="language-python">model.fit(X_train, y_train, epochs=5, batch_size=32, validation_split=0.2)
+</code></pre>
+<h3>7. Avaliar o Modelo</h3>
+<p>Avalie o modelo usando os dados de teste:</p>
+<pre><code class="language-python">loss, accuracy = model.evaluate(X_test, y_test)
+print(f&#39;Test Accuracy: {accuracy:.2f}&#39;)
+</code></pre>
+<h2>Apêndice: Glossário de Termos</h2>
+<h3>Rede Neural Convolucional (CNN)</h3>
+<p>Um tipo de rede neural projetada para processar dados com uma estrutura de grade, como imagens ou sequências de texto.</p>
+<h3>Embedding</h3>
+<p>Uma técnica para converter palavras em vetores densos de tamanho fixo que capturam relações semânticas entre as palavras.</p>
+<h3>Conv1D</h3>
+<p>Uma camada de convolução unidimensional que aplica filtros sobre as sequências de entrada.</p>
+<h3>GlobalMaxPooling1D</h3>
+<p>Uma camada de pooling que reduz a dimensionalidade ao selecionar o valor máximo de cada filtro.</p>
+<h3>Dense</h3>
+<p>Uma camada totalmente conectada onde cada neurônio recebe entrada de todos os neurônios da camada anterior.</p>
+<h3>Sigmoid</h3>
+<p>Uma função de ativação que transforma a saída em um valor entre 0 e 1, usada para tarefas de classificação binária.</p>
+<h3>Adam</h3>
+<p>Um algoritmo de otimização que ajusta os pesos da rede neural de forma eficiente.</p>
+<h3>Binary Crossentropy</h3>
+<p>Uma função de perda utilizada em problemas de classificação binária, medindo a diferença entre a saída prevista e a saída real.</p>
+<h3>Batch Size</h3>
+<p>O número de amostras processadas antes de atualizar o modelo.</p>
+<h3>Epoch</h3>
+<p>Uma única passagem por todo o conjunto de dados de treino.</p>
+<h2>Referências</h2>
+<ol>
+<li>Chollet, F. (2018). <em>Deep Learning with Python</em>. Manning Publications.</li>
+<li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press.</li>
+<li>Géron, A. (2019). <em>Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow</em>. O&#39;Reilly Media.</li>
+<li>Brownlee, J. (2018). <em>Deep Learning for Natural Language Processing</em>. Machine Learning Mastery.</li>
+<li>LeCun, Y., Bengio, Y., &amp; Hinton, G. (2015). Deep learning. <em>Nature</em>, 521(7553), 436-444.</li>
+<li>Olah, C. (2015). Understanding Convolutional Neural Networks. <em>colah&#39;s blog</em>.</li>
+<li>Raschka, S., &amp; Mirjalili, V. (2017). <em>Python Machine Learning</em>. Packt Publishing.</li>
+<li>Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., &amp; Salakhutdinov, R. (2014). Dropout: A simple way to prevent neural networks from overfitting. <em>Journal of Machine Learning Research</em>, 15(1), 1929-1958.</li>
+<li>Goldberg, Y. (2017). Neural Network Methods for Natural Language Processing. <em>Synthesis Lectures on Human Language Technologies</em>, 10(1), 1-309.</li>
+<li>Maas, A. L., Daly, R. E., Pham, P. T., Huang, D., Ng, A. Y., &amp; Potts, C. (2011). Learning word vectors for sentiment analysis. In <em>Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies</em>.</li>
+</ol>
+
+    </main>
+  </div>
+  <script>
+    // Simple client-side JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Blog loaded successfully!');
+    });
+  </script>
+</body>
+</html>
