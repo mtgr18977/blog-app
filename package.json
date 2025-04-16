@@ -10,9 +10,9 @@
         "start:alt": "PORT=3001 node createBlog.js",
         "start:custom": "cross-env PORT=$npm_config_port node createBlog.js",
         "setup": "npm install && npm run extract && npm run start",
-        "build": "node createBlog.js", // Este comando deve gerar os arquivos estáticos
+        "build": "node createBlog.js && mkdir -p build && cp -r templates/* build && mv build/main.html build/index.html",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d ./build"
+        "deploy": "gh-pages -d build"
     },
     "dependencies": {
         "cross-env": "^7.0.3",
