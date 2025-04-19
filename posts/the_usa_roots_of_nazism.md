@@ -20,7 +20,7 @@ The author, Géza von Hoffmann, vice-consul of the Austro-Hungarian Empire in Ch
 
 (...)
 
-It is noteworthy that the notion of a "final solution" regarding the Black question appeared in the United States long before it did in Germany, in a book published in Boston in 1913. (10) This idea was later carried out by the Nazis, using the same term (*Endlösung*) to resolve the "Jewish question."
+It is noteworthy that the notion of a "final solution" regarding the Black question appeared in the United States long before it did in Germany, in a book published in Boston in 1913. (10) This idea was later carried out by the Nazis, using the same term (*Endlösung*) to resolve the "Jewish question".
 
 ***
 
