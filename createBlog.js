@@ -718,7 +718,16 @@ function generateStaticFiles() {
   console.log('Static files generated successfully in the build directory.');
 }
 
-// Gerar arquivos estáticos
+// Primeiro, limpar a pasta build
+if (fs.existsSync(BUILD_FOLDER)) {
+  fs.rmSync(BUILD_FOLDER, { recursive: true });
+}
+fs.mkdirSync(BUILD_FOLDER);
+
+// Copiar o CSS
+fs.writeFileSync(path.join(BUILD_FOLDER, 'style.css'), cssContent);
+
+// Gerar as páginas
 generateStaticFiles();
 
 // Iniciar servidor apenas em desenvolvimento
