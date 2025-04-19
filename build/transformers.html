@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,16 +17,16 @@
           <a href="/">Home</a> | <a href="/about">About</a>
         </nav>
       </div>
-      <div class="search-container">
-        <form class="search-form" action="/search" method="GET">
-          <input type="text" name="q" placeholder="Busca">
-          <button type="submit">Buscar</button>
-        </form>
-      </div>
     </header>
     
-    <main class="content-container">
-      <p><strong>Transformers</strong> no contexto dos <em>Large Language Models</em> (LLMs) são uma classe de redes neurais que foram inicialmente projetadas para resolver tarefas de processamento de linguagem natural (PLN), como tradução automática, análise de sentimentos e geração de texto. Diferentemente das redes neurais convolucionais (CNNs), que são muito eficientes em tarefas de reconhecimento de padrões em imagens, os transformers utilizam mecanismos de atenção para processar o texto de maneira eficiente e eficaz.</p>
+    <main>
+      
+          <article class="post-content">
+            <h1>Transformers</h1>
+            <div class="post-meta">
+              <time datetime="2025-04-16T18:48:16.923Z">16/04/2025</time>
+            </div>
+            <p><strong>Transformers</strong> no contexto dos <em>Large Language Models</em> (LLMs) são uma classe de redes neurais que foram inicialmente projetadas para resolver tarefas de processamento de linguagem natural (PLN), como tradução automática, análise de sentimentos e geração de texto. Diferentemente das redes neurais convolucionais (CNNs), que são muito eficientes em tarefas de reconhecimento de padrões em imagens, os transformers utilizam mecanismos de atenção para processar o texto de maneira eficiente e eficaz.</p>
 <p>Os transformers fizeram sua estreia em 2017 com a publicação do artigo <strong>&quot;Attention is All You Need&quot;</strong>, que introduziu a arquitetura transformer. A ideia por trás dos transformers é usar mecanismos de atenção para focar em partes importantes do texto, permitindo que a rede entenda o contexto e gere respostas mais relevantes.</p>
 <p>No contexto dos novos LLMs, os transformers são usados para criar modelos que podem entender e gerar texto em linguagem natural. Esses modelos são treinados em grandes quantidades de dados textuais e podem capturar a complexidade da linguagem humana, o que permite que eles sejam usados em uma variedade de tarefas de PLN.</p>
 <p>Os transformers também são conhecidos por sua eficiência em termos de computação, pois permitem processamento paralelo, o que ajuda a reduzir o tempo de treinamento e inferência. Isso é especialmente importante para modelos grandes e complexos que são necessários para tarefas como tradução automática de alta qualidade.</p>
@@ -75,28 +74,12 @@
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Conv1D, GlobalMaxPooling1D, Dense, Multiply, Lambda
 
-def attention_mechanism(inputs):
-    # Cálculo das pontuações de atenção
-    attention_scores = Dense(1, activation=&#39;tanh&#39;)(inputs)
-    attention_scores = Lambda(lambda x: tf.nn.softmax(x, axis=1))(attention_scores)
-    # Aplicação dos pesos de atenção
-    context = Multiply()([inputs, attention_scores])
-    return context
-
-# Definindo a arquitetura do modelo AtNet
-inputs = Input(shape=(500, 128))
-conv_layer = Conv1D(filters=64, kernel_size=5, activation=&#39;relu&#39;)(inputs)
-attention_layer = attention_mechanism(conv_layer)
-pooling_layer = GlobalMaxPooling1D()(attention_layer)
-dense_layer = Dense(10, activation=&#39;relu&#39;)(pooling_layer)
-outputs = Dense(1, activation=&#39;sigmoid&#39;)(dense_layer)
-
-model = Model(inputs=inputs, outputs=outputs)
-model.compile(optimizer=&#39;adam&#39;, loss=&#39;binary_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
-
-# Resumo do modelo
-model.summary()
-</code></pre>
+<p>def attention_mechanism(inputs):<br>    # Cálculo das pontuações de atenção<br>    attention_scores = Dense(1, activation=&#39;tanh&#39;)(inputs)<br>    attention_scores = Lambda(lambda x: tf.nn.softmax(x, axis=1))(attention_scores)<br>    # Aplicação dos pesos de atenção<br>    context = Multiply()([inputs, attention_scores])<br>    return context</p>
+<h1>Definindo a arquitetura do modelo AtNet</h1>
+<p>inputs = Input(shape=(500, 128))<br>conv_layer = Conv1D(filters=64, kernel_size=5, activation=&#39;relu&#39;)(inputs)<br>attention_layer = attention_mechanism(conv_layer)<br>pooling_layer = GlobalMaxPooling1D()(attention_layer)<br>dense_layer = Dense(10, activation=&#39;relu&#39;)(pooling_layer)<br>outputs = Dense(1, activation=&#39;sigmoid&#39;)(dense_layer)</p>
+<p>model = Model(inputs=inputs, outputs=outputs)<br>model.compile(optimizer=&#39;adam&#39;, loss=&#39;binary_crossentropy&#39;, metrics=[&#39;accuracy&#39;])</p>
+<h1>Resumo do modelo</h1>
+<p>model.summary()<br></code></pre></p>
 <h3>Explicação do Código</h3>
 <ul>
 <li><strong>attention_mechanism</strong>: Função que calcula os pesos de atenção e aplica-os às características extraídas.</li>
@@ -140,13 +123,9 @@ model.summary()
 <li><strong>Softmax</strong>: Função de ativação que normaliza um vetor de valores em probabilidades.</li>
 </ul>
 
+          </article>
+        
     </main>
   </div>
-  <script>
-    // Simple client-side JavaScript
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('Blog loaded successfully!');
-    });
-  </script>
 </body>
 </html>

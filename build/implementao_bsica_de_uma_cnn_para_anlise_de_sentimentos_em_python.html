@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,16 +17,16 @@
           <a href="/">Home</a> | <a href="/about">About</a>
         </nav>
       </div>
-      <div class="search-container">
-        <form class="search-form" action="/search" method="GET">
-          <input type="text" name="q" placeholder="Busca">
-          <button type="submit">Buscar</button>
-        </form>
-      </div>
     </header>
     
-    <main class="content-container">
-      <p><strong>E se</strong> se eu resolvesse, de formam mambembe, implementar uma CNN em Python com ajuda do ChatGPT?</p>
+    <main>
+      
+          <article class="post-content">
+            <h1>Implementação Básica de uma CNN para Análise de Sentimentos em Python</h1>
+            <div class="post-meta">
+              <time datetime="2025-04-16T18:48:16.904Z">16/04/2025</time>
+            </div>
+            <p><strong>E se</strong> se eu resolvesse, de formam mambembe, implementar uma CNN em Python com ajuda do ChatGPT?</p>
 <p>Ficou assim.</p>
 <h3>1. Instalar as Bibliotecas Necessárias</h3>
 <p>Certifique-se de ter o TensorFlow e Keras instalados em seu ambiente. Eles podem ser instalados usando o seguinte comando:</p>
@@ -48,13 +47,10 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 max_features = 5000  # Número máximo de palavras
 max_len = 500  # Tamanho máximo de cada texto
 
-# Carregar o conjunto de dados IMDb
-(X_train, y_train), (X_test, y_test) = imdb.load_data(num_words=max_features)
-
-# Preencher ou truncar as sequências para o mesmo comprimento
-X_train = pad_sequences(X_train, maxlen=max_len)
-X_test = pad_sequences(X_test, maxlen=max_len)
-</code></pre>
+<h1>Carregar o conjunto de dados IMDb</h1>
+<p>(X_train, y_train), (X_test, y_test) = imdb.load_data(num_words=max_features)</p>
+<h1>Preencher ou truncar as sequências para o mesmo comprimento</h1>
+<p>X_train = pad_sequences(X_train, maxlen=max_len)<br>X_test = pad_sequences(X_test, maxlen=max_len)<br></code></pre></p>
 <h3>4. Construir o Modelo da CNN</h3>
 <p>Defina a arquitetura da rede neural convolucional:</p>
 <pre><code class="language-python">model = Sequential()
@@ -75,7 +71,7 @@ model.add(Dense(1, activation=&#39;sigmoid&#39;))
 <h3>7. Avaliar o Modelo</h3>
 <p>Avalie o modelo usando os dados de teste:</p>
 <pre><code class="language-python">loss, accuracy = model.evaluate(X_test, y_test)
-print(f&#39;Test Accuracy: {accuracy:.2f}&#39;)
+print(f&#39;Test Accuracy: \{accuracy:.2f\}&#39;)
 </code></pre>
 <h2>Apêndice: Glossário de Termos</h2>
 <h3>Rede Neural Convolucional (CNN)</h3>
@@ -112,13 +108,9 @@ print(f&#39;Test Accuracy: {accuracy:.2f}&#39;)
 <li>Maas, A. L., Daly, R. E., Pham, P. T., Huang, D., Ng, A. Y., &amp; Potts, C. (2011). Learning word vectors for sentiment analysis. In <em>Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies</em>.</li>
 </ol>
 
+          </article>
+        
     </main>
   </div>
-  <script>
-    // Simple client-side JavaScript
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('Blog loaded successfully!');
-    });
-  </script>
 </body>
 </html>
