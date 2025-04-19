@@ -745,21 +745,11 @@ try {
     console.log('Static files generated successfully in the build directory.');
   }
 
-  // Primeiro, limpar a pasta build
-  if (fs.existsSync(BUILD_FOLDER)) {
-    fs.rmSync(BUILD_FOLDER, { recursive: true });
-  }
-  fs.mkdirSync(BUILD_FOLDER);
-
-  // Copiar o CSS
-  fs.writeFileSync(path.join(BUILD_FOLDER, 'style.css'), cssContent);
-
-  // Gerar as páginas
+  // Gerar arquivos estáticos
   generateStaticFiles();
 
   // Iniciar servidor apenas em desenvolvimento
   if (process.env.NODE_ENV !== 'production') {
-    // Function to create server with automatic port handling
     function startServer() {
       const server = require('http').createServer(app);
 
