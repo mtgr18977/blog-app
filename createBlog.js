@@ -8,6 +8,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const { marked } = require('marked');
 
+// Configurar o marked para respeitar quebras de linha
+marked.setOptions({
+  mangle: false,
+  breaks: true,    // Respeitar quebras de linha simples
+  gfm: true,       // GitHub Flavored Markdown
+  headerIds: false // Opcional: remove IDs automáticos dos headers
+});
+
 try {
   // Configurações
   const BUILD_FOLDER = path.join(__dirname, 'build');
@@ -21,9 +29,9 @@ try {
     }
   });
 
-  // Configuration
-  const POSTS_JSON_PATH = path.join(__dirname, 'posts', 'posts.json');
-  const PUBLIC_FOLDER = path.join(__dirname, 'public');
+// Configuration
+const POSTS_JSON_PATH = path.join(__dirname, 'posts', 'posts.json');
+const PUBLIC_FOLDER = path.join(__dirname, 'public');
   const CSS_FILE = path.join(BUILD_FOLDER, 'style.css');
 
   // Configuração da paginação
@@ -70,11 +78,11 @@ try {
   *::before,
   *::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  margin: 0;
+  padding: 0;
+}
 
-  body {
+body {
     font-family: var(--font-family-sans);
     line-height: var(--line-height-base);
     color: var(--text-color);
@@ -82,14 +90,14 @@ try {
     -webkit-font-smoothing: antialiased;
   }
 
-  .container {
+.container {
     max-width: var(--container-max-width);
     margin: 0 auto;
     padding: var(--spacing-unit);
   }
 
   /* Header */
-  header {
+header {
     background-color: var(--background-color-container);
     padding: calc(var(--spacing-unit) * 1.5);
     margin-bottom: calc(var(--spacing-unit) * 2);
@@ -101,11 +109,11 @@ try {
     color: var(--primary-color);
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    text-align: center;
+  text-align: center;
     font-family: var(--font-family-serif);
-  }
+}
 
-  .nav-container {
+.nav-container {
     margin: 1rem 0;
     text-align: center;
   }
@@ -303,8 +311,8 @@ try {
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border-color-light);
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
     align-items: center;
     gap: 0.5rem;
   }
@@ -347,8 +355,8 @@ try {
     text-decoration: none;
     transition: all var(--transition-speed);
     min-width: 2.5rem;
-    text-align: center;
-  }
+  text-align: center;
+}
 
   .page-numbers a.current {
     background-color: var(--primary-color);
@@ -399,7 +407,7 @@ try {
 
   .about-content {
     max-width: 800px;
-    margin: 0 auto;
+  margin: 0 auto;
     padding: 2rem;
   }
 
@@ -435,21 +443,21 @@ try {
 
   .about-text a {
     color: var(--link-color);
-    text-decoration: none;
+  text-decoration: none;
     transition: color var(--transition-speed);
-  }
+}
 
   .about-text a:hover {
     color: var(--link-hover-color);
     text-decoration: underline;
-  }
+}
 
   /* Estilos para páginas de post individual */
-  .post-content {
+.post-content {
     max-width: 800px;
     margin: 0 auto;
     font-family: var(--font-family-serif);
-    line-height: 1.8;
+  line-height: 1.8;
     font-size: 1.1rem;
   }
 
@@ -467,9 +475,9 @@ try {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-color-light);
-  }
+}
 
-  .post-content p {
+.post-content p {
     margin-bottom: 1.5rem;
   }
 
@@ -576,66 +584,68 @@ try {
   // Write CSS file to build directory
   fs.writeFileSync(CSS_FILE, cssContent, 'utf8');
 
-  // Create main HTML template
+// Create main HTML template
   const mainTemplate = fs.readFileSync(path.join(TEMPLATES_FOLDER, 'main.html'), 'utf8');
 
-  // Function to render template with content
-  function renderTemplate(template, data) {
-    let rendered = template;
-    for (const [key, value] of Object.entries(data)) {
-      const regex = new RegExp(`{${key}}`, 'g');
-      rendered = rendered.replace(regex, value);
-    }
-    return rendered;
-  }
+  // Função para escapar chaves no conteúdo
+  function escapeContent(content) {
+    // Substitui { por \{ e } por \} apenas quando não são parte de uma variável de template
+    return content.replace(/([^{]){([^{])/g, '$1\\{$2')
+                  .replace(/([^}])}([^}])/g, '$1\\}$2');
+}
 
-  // Add function to parse markdown files
-  function parseMarkdownFile(filePath) {
-    const content = fs.readFileSync(filePath, 'utf8');
-    const [, frontMatter, ...bodyParts] = content.split('---');
-    
-    // Parse front matter
-    const metadata = {};
-    frontMatter.trim().split('\n').forEach(line => {
-      const [key, ...valueParts] = line.split(':');
-      if (key) {
-        let value = valueParts.join(':').trim();
-        if (key === 'tags') {
-          try {
-            value = JSON.parse(value);
-          } catch (e) {
-            value = [];
-          }
+// Add function to parse markdown files
+function parseMarkdownFile(filePath) {
+  const content = fs.readFileSync(filePath, 'utf8');
+  const [, frontMatter, ...bodyParts] = content.split('---');
+  
+  // Parse front matter
+  const metadata = {};
+  frontMatter.trim().split('\n').forEach(line => {
+    const [key, ...valueParts] = line.split(':');
+    if (key) {
+      let value = valueParts.join(':').trim();
+      if (key === 'tags') {
+        try {
+          value = JSON.parse(value);
+        } catch (e) {
+          value = [];
         }
-        metadata[key.trim()] = value;
       }
-    });
+      metadata[key.trim()] = value;
+    }
+  });
 
-    // Use marked to parse markdown content into HTML
-    const htmlContent = marked(bodyParts.join('---').trim());
+  // Use marked to parse markdown content into HTML
+  const htmlContent = marked(bodyParts.join('---').trim());
 
-    return {
-      ...metadata,
-      content: htmlContent, // Use parsed HTML content
-      slug: path.basename(filePath, '.md')
-    };
-  }
+  return {
+    ...metadata,
+    content: htmlContent, // Use parsed HTML content
+    slug: path.basename(filePath, '.md')
+  };
+}
 
-  // Load posts data at the top level
-  const POSTS_DIR = path.join(__dirname, 'posts');
-  let postsData = [];
+// Load posts data at the top level
+const POSTS_DIR = path.join(__dirname, 'posts');
+let postsData = [];
 
-  if (fs.existsSync(POSTS_DIR)) {
-    const markdownFiles = fs.readdirSync(POSTS_DIR)
-      .filter(file => file.endsWith('.md'));
-    
-    postsData = markdownFiles
-      .map(file => parseMarkdownFile(path.join(POSTS_DIR, file)))
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
-  } else {
-    console.error(`Posts directory not found at ${POSTS_DIR}`);
-    process.exit(1);
-  }
+if (fs.existsSync(POSTS_DIR)) {
+  const markdownFiles = fs.readdirSync(POSTS_DIR)
+    .filter(file => file.endsWith('.md'));
+  
+  postsData = markdownFiles
+    .map(file => parseMarkdownFile(path.join(POSTS_DIR, file)))
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+} else {
+  console.error(`Posts directory not found at ${POSTS_DIR}`);
+  process.exit(1);
+}
+
+  postsData = postsData.map(post => ({
+    ...post,
+    content: marked(escapeContent(post.content)) // Escapa as chaves antes de processar o markdown
+  }));
 
   // Função para gerar arquivos estáticos
   function generateStaticFiles() {
@@ -698,9 +708,9 @@ try {
     }
 
     // Gerar páginas individuais dos posts
-    postsData.forEach(post => {
-      const postHTML = renderTemplate(mainTemplate, {
-        pageTitle: post.title,
+  postsData.forEach(post => {
+    const postHTML = renderTemplate(mainTemplate, {
+      pageTitle: post.title,
         content: `
           <article class="post-content">
             <h1>${post.title}</h1>
@@ -710,9 +720,9 @@ try {
             ${post.content}
           </article>
         `
-      });
-      fs.writeFileSync(path.join(BUILD_FOLDER, `${post.slug}.html`), postHTML, 'utf8');
     });
+    fs.writeFileSync(path.join(BUILD_FOLDER, `${post.slug}.html`), postHTML, 'utf8');
+  });
 
     // Gerar página About
     const aboutHTML = renderTemplate(mainTemplate, {
@@ -742,18 +752,18 @@ try {
     // Salvar arquivo about.html
     fs.writeFileSync(path.join(BUILD_FOLDER, 'about.html'), aboutHTML, 'utf8');
 
-    console.log('Static files generated successfully in the build directory.');
-  }
+  console.log('Static files generated successfully in the build directory.');
+}
 
   // Gerar arquivos estáticos
-  generateStaticFiles();
+generateStaticFiles();
 
   // Iniciar servidor apenas em desenvolvimento
   if (process.env.NODE_ENV !== 'production') {
-    function startServer() {
+function startServer() {
       const server = require('http').createServer(app);
 
-      // Error handler for the server
+  // Error handler for the server
       server.on('error', (error) => {
         if (error.code === 'EADDRINUSE') {
           console.log(`Port ${PORT} is already in use. Trying on port ${PORT + 1}...`);
@@ -770,7 +780,7 @@ try {
         }
       });
 
-      // Try to listen on the specified port
+  // Try to listen on the specified port
       const currentPort = process.env.PORT || PORT;
       server.listen(currentPort, () => {
         console.log(`Blog server running at http://localhost:${currentPort}`);
@@ -787,4 +797,11 @@ try {
 } catch (error) {
   console.error('Build failed:', error);
   process.exit(1);
+}
+
+// Função para renderizar templates
+function renderTemplate(template, data) {
+  return template.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+    return data[key] || match;
+  });
 }
