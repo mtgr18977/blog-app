@@ -679,7 +679,7 @@ if (fs.existsSync(POSTS_DIR)) {
   process.exit(1);
 }
 
-// Function to generate static files
+// Função para gerar arquivos estáticos
 function generateStaticFiles() {
   // Gerar HTML pages para cada post
   postsData.forEach(post => {
@@ -730,39 +730,46 @@ function generateStaticFiles() {
 
   // Salvar arquivo about.html
   fs.writeFileSync(path.join(BUILD_FOLDER, 'about.html'), aboutHTML, 'utf8');
+  console.log('Static files generated successfully in the build directory.');
 }
 
-// Generate static files
+// Gerar arquivos estáticos
 generateStaticFiles();
 
-// Function to create server with automatic port handling
-function startServer() {
-  const server = require('http').createServer(app);
+// Iniciar servidor apenas em desenvolvimento
+if (process.env.NODE_ENV !== 'production') {
+  // Function to create server with automatic port handling
+  function startServer() {
+    const server = require('http').createServer(app);
 
-  // Error handler for the server
-  server.on('error', (error) => {
-    if (error.code === 'EADDRINUSE') {
-      console.log(`Port ${PORT} is already in use. Trying on port ${PORT + 1}...`);
-      // Try the next port by incrementing by 1
-      setTimeout(() => {
-        server.close();
-        // Try next port
-        process.env.PORT = Number(PORT) + 1;
-        startServer();
-      }, 1000);
-    } else {
-      console.error('Server error:', error);
-      process.exit(1);
-    }
-  });
+    // Error handler for the server
+    server.on('error', (error) => {
+      if (error.code === 'EADDRINUSE') {
+        console.log(`Port ${PORT} is already in use. Trying on port ${PORT + 1}...`);
+        // Try the next port by incrementing by 1
+        setTimeout(() => {
+          server.close();
+          // Try next port
+          process.env.PORT = Number(PORT) + 1;
+          startServer();
+        }, 1000);
+      } else {
+        console.error('Server error:', error);
+        process.exit(1);
+      }
+    });
 
-  // Try to listen on the specified port
-  const currentPort = process.env.PORT || PORT;
-  server.listen(currentPort, () => {
-    console.log(`Blog server running at http://localhost:${currentPort}`);
-    console.log(`Total posts loaded: ${postsData.length}`);
-  });
+    // Try to listen on the specified port
+    const currentPort = process.env.PORT || PORT;
+    server.listen(currentPort, () => {
+      console.log(`Blog server running at http://localhost:${currentPort}`);
+      console.log(`Total posts loaded: ${postsData.length}`);
+    });
+  }
+  
+  // Start the server
+  startServer();
+} else {
+  // Em produção, apenas gerar os arquivos e encerrar
+  process.exit(0);
 }
-
-// Start the server
-startServer();
