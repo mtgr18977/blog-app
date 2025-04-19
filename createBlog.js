@@ -8,6 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const { marked } = require('marked');
 
+marked.setOptions({
+  headerIds: false,
+  mangle: false
+});
+
 try {
   // Configurações
   const BUILD_FOLDER = path.join(__dirname, 'build');
