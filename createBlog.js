@@ -576,58 +576,13 @@ nav a:hover {
 fs.writeFileSync(CSS_FILE, cssContent, 'utf8');
 
 // Create main HTML template
-const mainTemplate = `
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{pageTitle}}</title>
-  <link rel="stylesheet" href="/style.css" type="text/css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="title-container">
-        <h1>Here be dragons</h1>
-      </div>
-      <div class="nav-container">
-        <nav>
-          <a href="/">Home</a>
-        </nav>
-      </div>
-      <div class="search-container">
-        <form class="search-form" action="/search" method="GET">
-          <input type="text" name="q" placeholder="Busca">
-          <button type="submit">Buscar</button>
-        </form>
-      </div>
-    </header>
-    
-    <main class="content-container">
-      {{content}}
-    </main>
-  </div>
-  <script>
-    // Simple client-side JavaScript
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('Blog loaded successfully!');
-    });
-  </script>
-</body>
-</html>
-`;
-
-fs.writeFileSync(path.join(TEMPLATES_FOLDER, 'main.html'), mainTemplate, 'utf8');
+const mainTemplate = fs.readFileSync(path.join(TEMPLATES_FOLDER, 'main.html'), 'utf8');
 
 // Function to render template with content
 function renderTemplate(template, data) {
-  let result = template;
-  Object.keys(data).forEach(key => {
-    const regex = new RegExp(`{{${key}}}`, 'g');
-    result = result.replace(regex, data[key]);
-  });
-  return result;
+  return template
+    .replace(/{{pageTitle}}/g, data.pageTitle)
+    .replace(/{{content}}/g, data.content);
 }
 
 // Add function to parse markdown files
@@ -730,6 +685,33 @@ function generateStaticFiles() {
 
   // Salvar arquivo about.html
   fs.writeFileSync(path.join(BUILD_FOLDER, 'about.html'), aboutHTML, 'utf8');
+
+  // Quando geramos o index.html, garantir que o conteúdo está sendo passado corretamente
+  const indexHTML = renderTemplate(mainTemplate, {
+    pageTitle: 'Blog - Here be dragons',
+    content: `
+      <div class="content-container">
+        <h1>Últimos Posts</h1>
+        <div class="posts-list">
+          ${postsData.slice(0, 6).map(post => `
+            <article class="post-preview">
+              <h2><a href="${post.slug}.html">${post.title}</a></h2>
+              <div class="post-meta">
+                <span class="post-date">${new Date(post.date).toLocaleDateString('pt-BR')}</span>
+              </div>
+              <div class="post-excerpt">
+                ${post.content.substring(0, 200)}...
+              </div>
+              <a href="${post.slug}.html" class="read-more">Ler mais</a>
+            </article>
+          `).join('\n')}
+        </div>
+      </div>
+    `
+  });
+
+  fs.writeFileSync(path.join(BUILD_FOLDER, 'index.html'), indexHTML, 'utf8');
+
   console.log('Static files generated successfully in the build directory.');
 }
 
