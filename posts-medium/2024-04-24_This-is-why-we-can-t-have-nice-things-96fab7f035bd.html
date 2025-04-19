@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>This is why we can’t have nice things</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">This is why we can’t have nice things</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Recently, I discussed how the Rabbit R1 seemed more reliable than the AI Pin — a view echoed in MKBHD’s review. Though admittedly, neither…
+</section>
+<section data-field="body" class="e-content">
+<section name="4025" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="e00e" id="e00e" class="graf graf--h3 graf--leading graf--title">This is why we can’t have nice things</h3></div><div class="section-inner sectionLayout--outsetColumn"><figure name="fb4b" id="fb4b" class="graf graf--figure graf--layoutOutsetCenter graf-after--h3"><img class="graf-image" data-image-id="0*S7J9bq_mPpedcEAX" data-width="5184" data-height="3456" data-unsplash-photo-id="8-9hqGiqgR4" src="https://cdn-images-1.medium.com/max/1200/0*S7J9bq_mPpedcEAX"><figcaption class="imageCaption">Photo by <a href="https://unsplash.com/@victorbrd?utm_source=medium&amp;utm_medium=referral" data-href="https://unsplash.com/@victorbrd?utm_source=medium&amp;utm_medium=referral" class="markup--anchor markup--figure-anchor" rel="photo-creator noopener" target="_blank">Victor Larracuente</a> on <a href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral" data-href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral" class="markup--anchor markup--figure-anchor" rel="photo-source noopener" target="_blank">Unsplash</a></figcaption></figure></div><div class="section-inner sectionLayout--insetColumn"><p name="afd9" id="afd9" class="graf graf--p graf-after--figure">Recently, I discussed how the Rabbit R1 seemed more reliable than the AI Pin — <a href="https://www.youtube.com/watch?v=TitZV6k8zfA&amp;t=1188s&amp;ref=here-be-dragons-1.ghost.io" data-href="https://www.youtube.com/watch?v=TitZV6k8zfA&amp;t=1188s&amp;ref=here-be-dragons-1.ghost.io" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">a view echoed in MKBHD’s review</a>. Though admittedly, neither tool is particularly groundbreaking; at least the Rabbit R1 appeared to be the better of the two.</p><p name="e732" id="e732" class="graf graf--p graf-after--p">However, the reality has proven to be even more disappointing than the AI Pin itself. Today, while checking my emails, a HackerNews link popped up, discussing the Rabbit R1 LAM SO and its source code. At first glance, there seemed to be nothing new — just another startup navigating the ruthless waves of capitalism, convincing venture capitalists and customers to invest in a product society doesn’t really need.</p><p name="4d91" id="4d91" class="graf graf--p graf-after--p">But what’s truly alarming is the approach they’re taking. Before reading on, take a deep breath and maybe sip some juice from your Juicero. H<a href="https://github.com/rabbitscam/rabbitr1?ref=here-be-dragons-1.ghost.io" data-href="https://github.com/rabbitscam/rabbitr1?ref=here-be-dragons-1.ghost.io" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">ere’s what’s happening</a>:</p><blockquote name="0950" id="0950" class="graf graf--blockquote graf-after--p"><a href="https://rabbit.tech/?ref=here-be-dragons-1.ghost.io" data-href="https://rabbit.tech/?ref=here-be-dragons-1.ghost.io" class="markup--anchor markup--blockquote-anchor" rel="noopener noreferrer noopener" target="_blank">rabbit.tech</a> has been making waves with its highly publicized release of the Rabbit R1 device, claiming it can perform tasks on your behalf and liberate you from app-based interactions. But let’s call a spade a spade — this is a blatant lie. And we’re about to expose it with the first partial release of the source code for its so-called “large action model”.</blockquote><blockquote name="8eea" id="8eea" class="graf graf--blockquote graf-after--blockquote">For those with a technical background, it’s painfully clear that there’s no artificial intelligence or large action model in sight. In reality, they’re simply relying on several Playwright automation scripts to do the job for you, which is why they only support four apps: Spotify, Midjourney, Doordash, and UberEats.</blockquote><blockquote name="f761" id="f761" class="graf graf--blockquote graf-after--blockquote">What’s even more alarming is that they ask you to login through their web portal, which is just a virtual machine connected via NoVNC. They also expect you to fill in your private passwords on their VMs. To make matters worse, they store the user sessions on their machines without any additional layers of security. This is both a blatant disregard for user privacy and a hilariously bad engineering practice.</blockquote><blockquote name="5689" id="5689" class="graf graf--blockquote graf-after--blockquote">Sadly, this shouldn’t come as a shock to anyone who’s done minimal due diligence on the team. After all, they were still hawking NFTs just two years ago.</blockquote><blockquote name="18f6" id="18f6" class="graf graf--blockquote graf-after--blockquote">Spread the word and stay vigilant.</blockquote><p name="66ab" id="66ab" class="graf graf--p graf-after--blockquote graf--trailing">I know.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@paulopilotti" class="p-author h-card">Paulo Pilotti Duarte</a> on <a href="https://medium.com/p/96fab7f035bd"><time class="dt-published" datetime="2024-04-24T14:59:08.744Z">April 24, 2024</time></a>.</p><p><a href="https://medium.com/@paulopilotti/this-is-why-we-cant-have-nice-things-96fab7f035bd" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on April 19, 2025.</p></footer></article></body></html>
