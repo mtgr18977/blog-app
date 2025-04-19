@@ -170,7 +170,6 @@ header {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     padding: 1rem 0;
-    grid-auto-flow: row; /* Garante que os itens sejam preenchidos por linha */
   }
 
   .post-preview {
@@ -179,7 +178,6 @@ header {
     padding: 1.5rem;
     box-shadow: var(--shadow-base);
     transition: transform var(--transition-speed);
-    overflow: hidden; /* Adicione isso para evitar que o conteúdo ultrapasse os limites */
   }
 
   .post-preview:hover {
@@ -471,7 +469,7 @@ header {
   }
 
   .post-content .post-meta {
-    font-family: var (--font-family-sans);
+    font-family: var(--font-family-sans);
     color: var(--text-color-light);
     font-size: 0.9rem;
     margin-bottom: 2rem;
@@ -581,44 +579,6 @@ header {
       background-color: rgba(255, 255, 255, 0.05);
     }
   }
-
-  /* Adicionar ao seu CSS existente */
-  .post-content img {
-    max-width: 100%;
-    height: auto;
-    margin: 2rem 0;
-  }
-
-  .post-content figure {
-    margin: 2rem 0;
-  }
-
-  .post-content figcaption {
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-color-light);
-  }
-
-  .post-content blockquote {
-    border-left: 3px solid var(--primary-color);
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-  }
-
-  .post-content pre {
-    background: var(--background-color-body);
-    padding: 1rem;
-    overflow-x: auto;
-    border-radius: 4px;
-  }
-
-  .post-content code {
-    font-family: monospace;
-    background: var(--background-color-body);
-    padding: 0.2rem 0.4rem;
-    border-radius: 2px;
-  }
   `;
 
   // Write CSS file to build directory
@@ -687,105 +647,113 @@ if (fs.existsSync(POSTS_DIR)) {
     content: marked(escapeContent(post.content)) // Escapa as chaves antes de processar o markdown
   }));
 
-  function convertMediumPosts() {
-    const MEDIUM_POSTS_FOLDER = path.join(__dirname, 'posts-medium');
-    
-    try {
-      // Ler todos os arquivos HTML da pasta posts-medium
-      const mediumFiles = fs.readdirSync(MEDIUM_POSTS_FOLDER)
-        .filter(file => file.endsWith('.html'));
+  // Função para gerar arquivos estáticos
+  function generateStaticFiles() {
+    // Calcular número total de páginas
+    const totalPages = Math.ceil(postsData.length / POSTS_PER_PAGE);
 
-      // Converter cada post
-      const convertedPosts = mediumFiles.map(file => {
-        const content = fs.readFileSync(path.join(MEDIUM_POSTS_FOLDER, file), 'utf8');
-        const slug = file.replace('.html', '');
-        
-        // Extrair título e data do conteúdo HTML
-        // Aqui assumimos que o título está em uma tag h1 e a data em algum metadata
-        const titleMatch = content.match(/<h1[^>]*>(.*?)<\/h1>/);
-        const dateMatch = content.match(/datetime="([^"]*)"/) || [null, new Date().toISOString()];
-        
-        const title = titleMatch ? titleMatch[1] : slug.replace(/-/g, ' ');
-        const date = dateMatch[1];
-        
-        // Limpar o HTML mantendo apenas o conteúdo principal
-        const cleanContent = content
-          .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Remove scripts
-          .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')    // Remove styles
-          .replace(/<header\b[^<]*(?:(?!<\/header>)<[^<]*)*<\/header>/gi, '') // Remove header
-          .replace(/<footer\b[^<]*(?:(?!<\/footer>)<[^<]*)*<\/footer>/gi, ''); // Remove footer
-        
-        return {
-          title,
-          date,
-          content: cleanContent,
-          slug
-        };
+    // Gerar páginas de índice (index.html, page2.html, etc)
+    for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
+      // Pegar posts para a página atual
+      const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+      const endIndex = startIndex + POSTS_PER_PAGE;
+      const currentPosts = postsData.slice(startIndex, endIndex);
+
+      // Gerar HTML dos posts
+      const postsHTML = currentPosts.map(post => `
+        <article class="post-preview">
+          <h2><a href="${post.slug}.html">${post.title}</a></h2>
+          <div class="post-meta">
+            <span class="post-date">${new Date(post.date).toLocaleDateString('pt-BR')}</span>
+          </div>
+          <div class="post-excerpt">
+            ${post.content.substring(0, 200)}...
+          </div>
+          <a href="${post.slug}.html" class="read-more">Ler mais</a>
+        </article>
+      `).join('\n');
+
+      // Gerar paginação
+      const paginationHTML = `
+        <nav class="pagination">
+          ${currentPage > 1 ? `<a href="${currentPage === 2 ? 'index.html' : `page${currentPage-1}.html`}">←</a>` : ''}
+          <span class="page-numbers">
+            ${Array.from({length: totalPages}, (_, i) => i + 1)
+              .map(pageNum => `
+                <a href="${pageNum === 1 ? 'index.html' : `page${pageNum}.html`}" 
+                  class="${pageNum === currentPage ? 'current' : ''}">${pageNum}</a>
+              `).join('')}
+          </span>
+          ${currentPage < totalPages ? `<a href="page${currentPage+1}.html">→</a>` : ''}
+        </nav>
+      `;
+
+      // Gerar página completa
+      const pageHTML = renderTemplate(mainTemplate, {
+        pageTitle: `Blog - Here be dragons ${currentPage > 1 ? `- Página ${currentPage}` : ''}`,
+        content: `
+          <div class="content-container">
+            <h1>Últimos Posts</h1>
+            <div class="posts-list">
+              ${postsHTML}
+            </div>
+            ${paginationHTML}
+          </div>
+        `
       });
 
-      // Salvar os posts convertidos junto com os posts existentes
-      return convertedPosts;
-    } catch (error) {
-      console.error('Error converting Medium posts:', error);
-      return [];
+      // Salvar arquivo
+      const fileName = currentPage === 1 ? 'index.html' : `page${currentPage}.html`;
+      fs.writeFileSync(path.join(BUILD_FOLDER, fileName), pageHTML, 'utf8');
     }
-  }
 
-  // Modificar a função principal para incluir os posts do Medium
-  function generateStaticFiles() {
-    // Usar postsData que já está carregado
-    const markdownPosts = postsData;
-    
-    // Carregar e converter posts do Medium
-    const mediumPosts = convertMediumPosts();
-    
-    // Combinar todos os posts e ordenar por data
-    const allPosts = [...markdownPosts, ...mediumPosts]
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
-    
     // Gerar páginas individuais dos posts
-    allPosts.forEach(post => {
-        const postHtml = renderTemplate(mainTemplate, {
-            pageTitle: post.title, // Mudou de title para pageTitle
-            content: `
-                <article class="post-content">
-                    <h1>${post.title}</h1>
-                    <div class="post-meta">${post.date}</div>
-                    ${post.content}
-                </article>
-            `
-        });
-        
-        // Criar pasta se não existir
-        if (!fs.existsSync(BUILD_FOLDER)) {
-            fs.mkdirSync(BUILD_FOLDER, { recursive: true });
-        }
-        
-        // Salvar arquivo do post
-        const postPath = path.join(BUILD_FOLDER, `${post.slug}.html`);
-        fs.writeFileSync(postPath, postHtml);
-    });
-    
-    // Gerar página inicial
-    const indexHtml = renderTemplate(mainTemplate, {
-        pageTitle: 'Here be dragons', // Título da página inicial
+  postsData.forEach(post => {
+    const postHTML = renderTemplate(mainTemplate, {
+      pageTitle: post.title,
         content: `
-            <div class="posts-list">
-                ${allPosts.map(post => `
-                    <article class="post-preview">
-                        <h2><a href="${post.slug}.html">${post.title}</a></h2>
-                        <div class="post-meta">${post.date}</div>
-                        <div class="post-excerpt">${post.content.substring(0, 200)}...</div>
-                        <a href="${post.slug}.html" class="read-more">Ler mais</a>
-                    </article>
-                `).join('')}
+          <article class="post-content">
+            <h1>${post.title}</h1>
+            <div class="post-meta">
+              <time datetime="${post.date}">${new Date(post.date).toLocaleDateString('pt-BR')}</time>
             </div>
+            ${post.content}
+          </article>
         `
     });
-    
-    // Salvar página inicial
-    fs.writeFileSync(path.join(BUILD_FOLDER, 'index.html'), indexHtml);
-  }
+    fs.writeFileSync(path.join(BUILD_FOLDER, `${post.slug}.html`), postHTML, 'utf8');
+  });
+
+    // Gerar página About
+    const aboutHTML = renderTemplate(mainTemplate, {
+      pageTitle: 'About - Here be dragons',
+      content: `
+        <div class="about-content">
+          <h1>Sobre</h1>
+          <div class="about-text">
+            <p>Este é um blog pessoal onde compartilho pensamentos e reflexões sobre tecnologia, política, sociedade e outros temas.</p>
+            
+            <h2>O nome do blog</h2>
+            <p>"Here be dragons" é uma frase que cartógrafos medievais usavam para marcar territórios inexplorados em seus mapas. 
+            Hoje, uso essa expressão como metáfora para explorar ideias e temas diversos.</p>
+            
+            <h2>Contato</h2>
+            <p>Você pode me encontrar em:</p>
+            <ul>
+              <li><a href="https://github.com/seu-usuario">GitHub</a></li>
+              <li><a href="https://twitter.com/seu-usuario">Twitter</a></li>
+              <li>Email: seu-email@exemplo.com</li>
+            </ul>
+          </div>
+        </div>
+      `
+    });
+
+    // Salvar arquivo about.html
+    fs.writeFileSync(path.join(BUILD_FOLDER, 'about.html'), aboutHTML, 'utf8');
+
+  console.log('Static files generated successfully in the build directory.');
+}
 
   // Gerar arquivos estáticos
 generateStaticFiles();

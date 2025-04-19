@@ -127,7 +127,6 @@ header {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     padding: 1rem 0;
-    grid-auto-flow: row; /* Garante que os itens sejam preenchidos por linha */
   }
 
   .post-preview {
@@ -136,7 +135,6 @@ header {
     padding: 1.5rem;
     box-shadow: var(--shadow-base);
     transition: transform var(--transition-speed);
-    overflow: hidden; /* Adicione isso para evitar que o conteúdo ultrapasse os limites */
   }
 
   .post-preview:hover {
@@ -428,7 +426,7 @@ header {
   }
 
   .post-content .post-meta {
-    font-family: var (--font-family-sans);
+    font-family: var(--font-family-sans);
     color: var(--text-color-light);
     font-size: 0.9rem;
     margin-bottom: 2rem;
@@ -537,43 +535,5 @@ header {
     .post-content code {
       background-color: rgba(255, 255, 255, 0.05);
     }
-  }
-
-  /* Adicionar ao seu CSS existente */
-  .post-content img {
-    max-width: 100%;
-    height: auto;
-    margin: 2rem 0;
-  }
-
-  .post-content figure {
-    margin: 2rem 0;
-  }
-
-  .post-content figcaption {
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-color-light);
-  }
-
-  .post-content blockquote {
-    border-left: 3px solid var(--primary-color);
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-  }
-
-  .post-content pre {
-    background: var(--background-color-body);
-    padding: 1rem;
-    overflow-x: auto;
-    border-radius: 4px;
-  }
-
-  .post-content code {
-    font-family: monospace;
-    background: var(--background-color-body);
-    padding: 0.2rem 0.4rem;
-    border-radius: 2px;
   }
   
