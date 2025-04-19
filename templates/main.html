@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{pageTitle}</title>
+  <title>{{pageTitle}}</title>
   <link rel="stylesheet" href="/style.css" type="text/css">
 </head>
 <body>
@@ -17,16 +17,10 @@
           <a href="/">Home</a> | <a href="/about">About</a>
         </nav>
       </div>
-      <div class="search-container">
-        <form class="search-form" action="/search" method="GET">
-          <input type="text" name="q" placeholder="Busca">
-          <button type="submit">Buscar</button>
-        </form>
-      </div>
     </header>
     
     <main>
-      {content}
+      {{content}}
     </main>
   </div>
   <script>
