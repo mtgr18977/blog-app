@@ -1,10 +1,9 @@
 ---
-title: À Primeira Vista
+title: "À primeira vista"
 date: 2025-04-16T18:48:16.901Z
 tags: []
 ---
 
-# À primeira vista
 **Edgar Allan Poe | Tradução por Paulo Pilotti Duarte**
 
 Muitos anos atrás era moda ridicularizar a ideia de “amor à primeira vista”. Mas, aqueles que pensam, não mais do que aqueles que profundamente sentem, sempre advogaram em prol da sua existência. Descobertas modernas, de fato, no que pode ser chamado de magnetismo ético ou magneto estética, tornam provável que a mais natural, e, conseqüentemente, a mais verdadeira e mais intensa das afeições humanas é aquela que surge no coração, como se por uma simpatia elétrica — para resumir em uma palavra — que o mais brilhante e mais duradouro dos grilhões psíquicos é aquele que é arrebatado apenas com um olhar. A confissão que estou prestes a fazer irá adicionar outra as já quase inumeráveis instâncias verdadeiras sobre esta posição.

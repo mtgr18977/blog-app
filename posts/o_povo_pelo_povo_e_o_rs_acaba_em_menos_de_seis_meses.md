@@ -1,5 +1,5 @@
 ---
-title: O povo pelo povo e o RS acaba em menos de seis meses
+title: "Untitled"
 date: 2025-04-16T18:48:16.939Z
 tags: []
 ---
@@ -31,5 +31,3 @@ O Eduardo Leite foi responsável por grande parte da nova legislação ambiental
 Se essa é a atitude correta de um governador de um estado que sempre teve problemas com cheia e que está em um região complicada em termos de mudanças climáticas, a gente está muito perdido. E nem é no longo prazo.
 
 A entrevsta dele é esclarevedora sobre como o neoliberalismo pensa a pauta ambiental. Vale a pena: ['Estudos alertaram, mas governo também vive outras agendas', diz Eduardo Leite sobre falta de plano para conter cheias no RS](https://leiaisso.net/v7j8g/).
-
-

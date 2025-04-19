@@ -1,5 +1,5 @@
 ---
-title: The USA roots of Nazism
+title: "Untitled"
 date: 2025-04-16T18:48:16.937Z
 tags: []
 ---

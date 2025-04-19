@@ -1,5 +1,5 @@
 ---
-title: O Captain! My Captain!
+title: "Untitled"
 date: 2025-04-16T18:48:16.924Z
 tags: []
 ---

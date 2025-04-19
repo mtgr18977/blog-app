@@ -1,5 +1,5 @@
 ---
-title: Liberais não pensam
+title: "Untitled"
 date: 2025-04-16T18:48:16.917Z
 tags: []
 ---

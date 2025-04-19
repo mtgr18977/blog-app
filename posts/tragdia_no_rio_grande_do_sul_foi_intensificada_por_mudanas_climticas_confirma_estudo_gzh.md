@@ -1,5 +1,5 @@
 ---
-title: Tragédia no Rio Grande do Sul foi intensificada por mudanças climáticas, confirma estudo | GZH
+title: "Untitled"
 date: 2025-04-16T18:48:16.901Z
 tags: []
 ---

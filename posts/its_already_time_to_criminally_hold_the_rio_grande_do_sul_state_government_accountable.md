@@ -1,5 +1,5 @@
 ---
-title: It's Already Time to Criminally Hold the Rio Grande do Sul State Government Accountable
+title: "Untitled"
 date: 2025-04-16T18:48:16.918Z
 tags: []
 ---
@@ -26,4 +26,3 @@ It is high time for someone - deputies, councilors, Public Ministry, or civil so
 [2] Sebastião Melo, through the Civil Defense, ordered on Sunday (May 5) that part of the Sarandi neighborhood (northern zone) be evacuated to the Renascença Theater, 12km away from Sarandi, without any support for moving in a flooded city on the brink of collapse. On Monday, May 6, he ordered, through the Civil Defense, that the pump in the machine house in the regions of Menino Deus and Cidade Baixa, where the evacuees from Sarandi were located, be turned off as a "safety measure" without notifying anyone. The residents of the region, the rescuers, the evacuees/refugees, and the volunteers were caught off guard by the sudden flooding of the streets. The shelter where people were located was flooded in record time, and the generator, under water, was at risk of explosion. People were re-evacuated to a more distant location, walking through the dirty water of the flood and the dark streets of a city under climatic chaos. Sebastião Melo plays on the team of rain, as a friend of mine said.
 
 Furthermore, on Sunday afternoon, the same Sebastião Melo asked people to migrate to the northern coast, as Porto Alegre was under threat of total collapse (water, sewage, and electricity), ignoring that the northern coast would receive 200mm of rain
-

@@ -1,5 +1,5 @@
 ---
-title: The new monarchy
+title: "Untitled"
 date: 2025-04-16T18:48:16.926Z
 tags: []
 ---

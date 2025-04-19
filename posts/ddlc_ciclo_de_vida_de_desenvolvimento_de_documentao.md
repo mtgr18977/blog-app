@@ -1,5 +1,5 @@
 ---
-title: DDLC — Ciclo de Vida de Desenvolvimento de Documentação
+title: "Untitled"
 date: 2025-04-16T18:48:16.932Z
 tags: []
 ---

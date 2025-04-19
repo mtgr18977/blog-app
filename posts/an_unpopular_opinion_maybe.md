@@ -1,5 +1,5 @@
 ---
-title: An unpopular opinion (maybe)
+title: "Untitled"
 date: 2025-04-16T18:48:16.928Z
 tags: []
 ---

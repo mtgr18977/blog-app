@@ -1,5 +1,5 @@
 ---
-title: Os processadores para celulares da Apple agora são fabricados nos Estados Unidos. Pela TSMC.
+title: "Untitled"
 date: 2025-04-16T18:48:16.933Z
 tags: []
 ---

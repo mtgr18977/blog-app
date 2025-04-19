@@ -1,5 +1,5 @@
 ---
-title: Why did the british empire abolish slavery and persecute it?
+title: "Untitled"
 date: 2025-04-16T18:48:16.913Z
 tags: []
 ---

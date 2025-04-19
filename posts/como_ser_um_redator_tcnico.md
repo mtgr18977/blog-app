@@ -1,5 +1,5 @@
 ---
-title: Como ser um Redator Técnico?
+title: "Untitled"
 date: 2025-04-16T18:48:16.929Z
 tags: []
 ---

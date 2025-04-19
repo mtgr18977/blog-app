@@ -1,10 +1,9 @@
 ---
-title: Trilobitas
+title: "Trilobitas"
 date: 2025-04-16T18:48:16.912Z
 tags: []
 ---
 
-# Trilobitas
 Sempre fui fascinado pelo "terror espacial", desde a época de "O Enigma do Horizonte" e depois pelo terror lovecraftiano. Recentemente, deparei-me com este conto no [r/NoSleep](https://www.reddit.com/r/nosleep/comments/j8xty9/trilobite/) e, após lê-lo de madrugada, decidi que era hora de traduzi-lo (e até alterar algumas coisas, criando uma versão do conto em português). A história é interessante e a minúcia do autor original ([creepypossum](https://www.reddit.com/user/creepypossum/)) em relação aos detalhes biológicos e fisiológicos dos animais é deveras interessante.
 
 ---

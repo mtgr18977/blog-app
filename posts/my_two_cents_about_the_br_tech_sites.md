@@ -1,5 +1,5 @@
 ---
-title: My two cents about the BR tech sites
+title: "Untitled"
 date: 2025-04-16T18:48:16.908Z
 tags: []
 ---
@@ -17,4 +17,3 @@ First, I have to say that in my youth, when Carlos Cardoso began to establish hi
 > Note: All these sites had or have their associated “nerd” podcast. For me, this goes beyond quality (they cater to an audience); it’s a matter of maturity. After 35/40 years, one expects more depth and a less frantic pace of reading and consumption. This reflects my relationship with almost all Brazilian internet places (Jovem Nerd, RapaduraCast, B9, Tecnoblog, ½ bit, etc.).
 
 Sometimes, we get older and more demanding.
-

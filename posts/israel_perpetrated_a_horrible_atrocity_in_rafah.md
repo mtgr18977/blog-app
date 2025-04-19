@@ -1,5 +1,5 @@
 ---
-title: Israel perpetrated a horrible atrocity in Rafah.
+title: "Untitled"
 date: 2025-04-16T18:48:16.917Z
 tags: []
 ---

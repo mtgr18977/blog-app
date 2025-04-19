@@ -1,0 +1,75 @@
+---
+title: "Os novos chips da Apple, M1, são mais sucetíveis à ataques."
+date: 2025-04-19T17:39:36.308Z
+tags: []
+---
+
+Desde que começou a perder terreno para o Android a Apple se voltou para a questão de segurança e privacidade como forma de sustentar os…
+
+* * *
+
+### Os novos chips M1, da Apple, são mais sucetíveis à ataques. E a Apple não parece muito preocupada com isso.
+
+Desde que começou a perder terreno para o Android a Apple se voltou para a questão de segurança e privacidade como forma de sustentar os seus preços altos em todo o mundo. Isso seria bom, ainda que faça-nos crer que a privacidade e a segurança sejam produtos de luxo, mas ao menos cria a sensação de que “temos para onde fugir”.
+
+Até agora. Mais ou menos. Tenho amigos na área de segurança da informação que dizem que a segurança da Apple e do macOS é ilusória e que apenas se perpetua pela baixa adesão aos sistemas no mercado doméstico e corporativo. (market share de menos de 10% no mundo), o que torna o sistema menos atrativo a qualquer hacker ou vírus.
+
+A questão que surge com os novos chips de arquitetura M1, projetados pela Apple baseados na arquitetura ARM, é que eles tem sérias vulnerabilidades que são facéis de serem exploradas — como um malware adormecido— que acabam chamando a atenção. Ainda mais quando juntamos a tradicional arrogância dos engenheiros da Apple em não arrumar as falhas do seu sistema.
+
+O artigo abaixo faz um resumo do paper “Prime+Probe 1, JavaScript 0: Overcoming Browser-based Side-Channel Def” que demonstra um ataque através de um canal paralelo utilizando Javascript, explorando vulnerabilidade no modo de execução e gerenciamento do cache de processadores de todas as arquiuteturas, mesmo tendo o JS bloqueado para execução. Ébastante técnico, mas, ao mesmo tempo acessível. Vale a pena ler pra entender como isso pode impactar futuramente os serviços web.
+
+* * *
+
+**O primeiro ataque paralelo usando o navegador contra os chips M1 da Apple funciona mesmo com o Javascript desabilitado; mais do que em outras arquiteturas** por Siddharth Ahuja.
+
+Uma equipe de pesquisadores demonstrou um novo ataque paralelo usando um navegador que funciona mesmo se o Javascript estiver bloqueado, afetando plataformas de hardware como Intel Core, AMD Ryzen, Samsung Exynos e até mesmo [os chips M1 da Apple](https://the8-bit.com/6-things-that-macbooks-with-m1-chip-cant-do-that-intel-based-macbooks-still-can/). Surpreendentemente, os pesquisadores concluíram que, devido a políticas de substituição de cache mais simples, seus ataques são mais eficazes nos chips M1 e Exynos.
+
+Para demonstrar o ataque, os pesquisadores desenvolveram uma sequência de ataques com dependência diminuída de recursos Javascript, o que levou ao “primeiro ataque de paralelo usando um navegador construído inteiramente a partir de Cascading Style Sheets (CSS) e HTML, e funciona mesmo quando a execução de script está completamente bloqueada.
+
+Também é imperativo observar que esses ataques foram demonstrados principalmente usando o navegador Chrome do Google, independentemente da arquitetura. E devido às [diferenças entre as implementações](https://the8-bit.com/chrome-vs-firefox-vs-safari-vs-edge-which-is-the-best-browser-for-an-iphone/) de segurança de diferentes navegadores, os resultados do ataque podem variar. Portanto, se esse teste fosse executado no Safari em um Mac, é provável que o teste retornasse um resultado diferente.
+
+Esta vulnerabilidade pode levar a ataques usando a microarquitetura da fringerprint dos sites, dizem os pesquisadores. Um ataque de fringerprint (impressão digital) em um site permite que um intruso determine a atividade do alvo na web, aproveitando os recursos da sequência de pacotes do alvo. Isso também ignora efetivamente a aplicação da maioria das tecnologias de proteção de privacidade, como VPNs, proxies ou mesmo TOR.
+
+De acordo com um artigo publicado pelos pesquisadores por trás da demonstração, o Javascript se tornou uma forma popular de conduzir ataques de paralelos. No entanto, os navegadores empregam um método no qual um invasor é impedido de medir o tempo com precisão, o que é aparentemente essencial em ataques de paraleos que se baseiam em explorar o Javascript.
+
+De acordo com o periódico:
+
+> “Os atacantes paralelos, por sua vez, tentam contornar essas restrições criando temporizadores improvisados com precisões variadas por meio da exploração de outras APIs do navegador, como a passagem de uma mensagem ou multithreading”
+
+![](https://cdn-images-1.medium.com/max/800/1*iWNoOfSx53ux4HFn_qo9Lg.png)
+
+Precisão controlada em diferentes arquiteturas.
+
+Entre todos os esforços feitos pelos navegadores para bloquear ataques de paralelos que se aproveitam do Javascript, a opção mais fácil é desabilitar completamente o Javascript. A Apple, por exemplo, oferece uma opção nas configurações do Safari no macOS para desativar o Javascript inteiramente como uma forma de mitigar esses ataques.
+
+Apesar disso, a nova forma de ataque demonstrada por pesquisadores de universidades nos Estados Unidos, Austrália e Israel é eficaz, pois depende apenas de CSS e HTML, tornando-se o primeiro ataque paralelo que funciona nos [chips M1 da Apple](https://the8-bit.com/which-m1-apple-silicon-macbook-you-should-buy/), enquanto há precedentes entre outros processadores afetados por ele, incluindo Macs baseados em Intel.
+
+De acordo com o artigo publicado, a análise está focada em Prime + Probe, que consiste em um ataque paralelo usando o cache do processador e que detém a capacidade de detectar quais conjuntos de cache são acessados pelo alvo e quais podem então ser usados para obter informações.
+
+Conforme o artigo:
+
+> “Além de serem influenciados por defesas, os ataques de microarquitetura também são afetados por uma maior diversificação de hardware em dispositivos de consumo. Enquanto o mercado de processadores de ponta costumava ser dominado pela Intel, nos últimos anos houve um aumento na popularidade de outras alternativas, como a arquitetura Zen da AMD, Exynos da Samsung e os chips Apple M1 recentemente lançados. Demonstrando isso empiricamente, avaliamos nossos ataques às arquiteturas Ryzen da AMD, Exynos da Samsung e M1 da Apple. Ironicamente, mostramos que nossos ataques às vezes são mais eficazes contra esses novos CPUs da Apple e Samsung em comparação com seus equivalentes Intel, provavelmente devido às suas políticas de substituição de cache mais simples”
+
+O nível de sucesso do ataque depende da arquitetura direcionada e das defesas empregadas nela. O ataque funciona até mesmo contra ambientes de navegador protegidos, incluindo o navegador Tor, Chrome Zero e funciona melhor em dispositivos com chips Intel, AMD, Samsung e M1.
+
+Os pesquisadores notificaram os fornecedores de chips afetados. A Apple respondeu afirmando que a divulgação pública de suas descobertas não levanta quaisquer preocupações.
+
+“Nossa hipótese é que a arquitetura M1 faz uso de heurísticas de cache menos avançadas e que, como resultado, as varreduras de memória simplistas que nosso ataque executa são mais capazes de liberar todo o cache nesses dispositivos do que na arquitetura Intel.
+
+Os ataques de cache não podem ser evitados pela redução da resolução do temporizador, pela abolição de temporizadores, threads ou matrizes, ou mesmo pela desativação completa do suporte a scripts. Isso implica que qualquer processo secreto que compartilhe recursos de cache com um navegador conectado a sites não confiáveis está potencialmente em risco”.
+
+Finalmente, os pesquisadores observam que, uma vez que o subsistema de memória e cache dos chips M1 ainda não foram estudados em detalhes, ele deixa espaço para um “período de graça” em que os invasores acharão o alvo difícil de conquistar. No entanto, ainda é possível.
+
+No artigo publicado os pesquisadores abordam mais a possibilidade de um ataque de paralelo pelo navegador nas arquiteturas de chips da Apple e de outros fabricantes, em vez de descrevê-lo como uma ameaça iminente certa. Isso ocorre principalmente porque a condução de um ataque de temporização de cache é bastante difícil.
+
+Esta é a segunda vulnerabilidade encontrada que afeta os Macs equipados com o chip M1 em um período de dois meses. No mês passado, pesquisadores de segurança do Red Canary descobriram um malware adormecido, mas perigoso, chamado Silver Sparrow, que tem a capacidade de rodar nativamente em Macs com chips M1, afetando mais de 30.000 usuários.
+
+A Apple [implementou as medidas necessárias,](https://the8-bit.com/apple-nips-the-silver-sparrow-malware-in-the-bud/) incluindo revogar certificados para a conta do desenvolvedor de onde o malware se originou. Embora isso impeça que novos Macs sejam afetados, os Macs baseados no chip M1 que já contêm o malware ainda estão em risco.
+
+O artigo completo é uma leitura interessante. você pode conferir [aqui](https://arxiv.org/abs/2103.04952) .
+
+By [Paulo Pilotti Duarte](https://medium.com/@paulopilotti) on [March 13, 2021](https://medium.com/p/95959e69b881).
+
+[Canonical link](https://medium.com/@paulopilotti/os-novos-chips-da-apple-m1-s%C3%A3o-mais-sucet%C3%ADveis-%C3%A0-ataques-95959e69b881)
+
+Exported from [Medium](https://medium.com) on April 19, 2025.

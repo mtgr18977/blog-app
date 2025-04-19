@@ -1,5 +1,5 @@
 ---
-title: Implementação Básica de uma CNN para Análise de Sentimentos em Python
+title: "Definir parâmetros"
 date: 2025-04-16T18:48:16.904Z
 tags: []
 ---
@@ -34,7 +34,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 Carregue o conjunto de dados IMDb e prepare as sequências de texto:
 
 ```python
-# Definir parâmetros
+
 max_features = 5000  # Número máximo de palavras
 max_len = 500  # Tamanho máximo de cada texto
 

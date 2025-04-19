@@ -1,5 +1,5 @@
 ---
-title: The machine gun history
+title: "Untitled"
 date: 2025-04-16T18:48:16.908Z
 tags: []
 ---

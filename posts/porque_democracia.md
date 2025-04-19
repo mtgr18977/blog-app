@@ -1,5 +1,5 @@
 ---
-title: Porque democracia?
+title: "Untitled"
 date: 2025-04-16T18:48:16.936Z
 tags: []
 ---

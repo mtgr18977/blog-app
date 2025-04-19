@@ -1,5 +1,5 @@
 ---
-title: Transformers
+title: "CNN do tipo AtNet"
 date: 2025-04-16T18:48:16.923Z
 tags: []
 ---
@@ -18,7 +18,7 @@ Em resumo, os transformers são uma parte crucial dos novos LLMs, permitindo que
 
 ---
 
-# CNN do tipo AtNet
+
 
 As Convolutional Neural Networks (CNNs) são uma classe de redes neurais artificiais projetadas principalmente para o processamento de dados estruturados em grade, como imagens. O modelo AtNet é uma variação das CNNs que incorpora mecanismos de atenção para melhorar a eficiência e a eficácia na captura de informações contextuais. Vamos detalhar o que é uma CNN do modelo AtNet, abordando seus componentes e funcionamento.
 

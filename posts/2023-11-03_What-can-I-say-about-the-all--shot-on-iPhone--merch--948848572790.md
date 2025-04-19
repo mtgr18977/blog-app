@@ -1,0 +1,41 @@
+---
+title: "What can I say about the all “shot on iPhone” merch?"
+date: 2025-04-19T17:39:36.362Z
+tags: []
+---
+
+Arun.is made a post about this. I recommend it.
+
+* * *
+
+### What can I say about the all “shot on iPhone” merch?
+
+[Arun.is made a post about this](https://arun.is/blog/apple-shot-on-iphone-evolution). I recommend it.
+
+The main point is as follows:
+
+> _Apple has continued to update and evolve the Shot on iPhone campaign as the iPhone itself has evolved. They have held competitions to showcase new features like night mode and macro. As the iPhone gained professional features, Apple has been demonstrating how people are using iPhones in professional shoots. The film introducing the iPhone 15 Pro was filled with professional video shoots._
+
+> _The question of whether a smartphone can be a good everyday camera has already been answered. Shot on iPhone no longer needs to convince consumers that the iPhone is a great pocket camera._
+
+> _The new message is for professionals: the iPhone can replace a professional camera that costs as much as a luxury car. It’s not the only equipment you’ll need, but you already knew that._
+
+![](https://cdn-images-1.medium.com/max/1200/0*fz1KCLq6p2FgCXcG)
+
+Photo by [Vựa Táo](https://unsplash.com/@vuatao?utm_source=medium&utm_medium=referral) on [Unsplash](https://unsplash.com?utm_source=medium&utm_medium=referral)
+
+I see this as Apple’s eternal return. Apple is a company that aspires to be luxurious and exclusive, to enter the homes of the wealthy as an object that is displayed, like a Patek Philippe, a Bola Valpolicella, or a Solid Gold OVO. But Apple is not that. I don’t know if it will become that. It’s a company that makes computers, phones, tablets, and watches inaccessible to the lower class (and to the middle class in peripheral countries); at the same time, it’s not a luxury brand understood as something exclusive by the super-rich. Don’t get me wrong, they have MacBooks, Studios, etc. But it’s not the objects they consider complete; it’s the tools (for watching videos, sending emails, taking photos on a trip). And Apple wants to be exclusive, wants to be a luxury, professional brand.
+
+It’s a repositioning compared to Apple’s resurgence (with the Macs G3) and even the launch of the first iPhone.
+
+### Will it work?
+
+I don’t know. Not in less than a decade. But the truth is that Apple has a clear message: if you’re the one financing your computer in 12 installments, having a friend buy it in Miami, or purchasing a used one from 4 or 5 years ago, you’re not the company’s target audience, and the company doesn’t care if you use their brand.
+
+Putting that aside, the event filmed with an iPhone, even with a large amount of professional equipment, is a message to the professional and high-end market: use iPhones instead of renting intermediate cameras.
+
+By [Paulo Pilotti Duarte](https://medium.com/@paulopilotti) on [November 3, 2023](https://medium.com/p/948848572790).
+
+[Canonical link](https://medium.com/@paulopilotti/what-can-i-say-about-the-all-shot-on-iphone-merch-948848572790)
+
+Exported from [Medium](https://medium.com) on April 19, 2025.

@@ -1,10 +1,8 @@
 ---
-title: This is why we can't have nice things
+title: "Untitled"
 date: 2025-04-16T18:48:16.911Z
 tags: []
 ---
-
-
 
 Some time ago I was talking about how the rabbit r1 sounds more reliable then the AI Pin (see the review from MKBHD for more information about it). Not that I was excited about a tool/gadget who does nothing at all (let's be honest)m but, at least, I thought it was a better product.
 

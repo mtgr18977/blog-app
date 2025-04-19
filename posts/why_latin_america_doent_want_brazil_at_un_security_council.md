@@ -1,5 +1,5 @@
 ---
-title: Why Latin America doen't want Brazil at UN security council?
+title: "Untitled"
 date: 2025-04-16T18:48:16.927Z
 tags: []
 ---
