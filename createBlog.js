@@ -580,9 +580,12 @@ const mainTemplate = fs.readFileSync(path.join(TEMPLATES_FOLDER, 'main.html'), '
 
 // Function to render template with content
 function renderTemplate(template, data) {
-  return template
-    .replace(/{{pageTitle}}/g, data.pageTitle)
-    .replace(/{{content}}/g, data.content);
+  let rendered = template;
+  for (const [key, value] of Object.entries(data)) {
+    const regex = new RegExp(`{${key}}`, 'g');
+    rendered = rendered.replace(regex, value);
+  }
+  return rendered;
 }
 
 // Add function to parse markdown files
