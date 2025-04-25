@@ -12,11 +12,11 @@ De forma resumida, o ChatGPT, e qualquer sistema de LLM ou de previsão terminol
 
 Primeiro vamos entender como o Google previa as n-gramas de um texto, o que é de, forma extrapolada, o mesmo principio sobre o qual operam os assistentes:
 
-![Como o Google previa as n-gramas de uma busca](/images_posts/graph-1.jpeg)
+![Como o Google previa as n-gramas de uma busca](https://raw.githubusercontent.com/mtgr18977/blog-app/refs/heads/leuaite-v1/images_posts/graph-1.jpeg)
 
 E depois como funcionam as n-gramas:
 
-![Como é uma n-grama](/images_posts/graph-2.jpeg)
+![Como é uma n-grama](https://raw.githubusercontent.com/mtgr18977/blog-app/refs/heads/leuaite-v1/images_posts/graph-2.jpeg)
 
 De forma resumida é isso, e por isso que os assistentes precisam de todos os dados possíveis. ELes precisam montar um corpus com os textos e aplicar diversos algoritmos de transformação, tokenização e recuperação da informação para, quando você perguntar o que é bom para queimadura de pele, ele conseguir entender o padrão de "símbolos" que você passou e buscar na base de conhecimento dele (contruída por décadas de internet aberta) o que mais se encaixa naquele padrão.
 
