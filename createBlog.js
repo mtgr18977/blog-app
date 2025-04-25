@@ -158,7 +158,6 @@ if (fs.existsSync(POSTS_DIR)) {
         pageTitle: `Blog - Here be dragons ${currentPage > 1 ? `- Página ${currentPage}` : ''}`,
         content: `
           <div class="content-container">
-            <h1>Últimos Posts</h1>
             <div class="posts-list">
               ${postsHTML}
             </div>
