@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Como prever termos em uma busca?</title>
+  <link rel="stylesheet" href="/tema-2.css" type="text/css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title-container">
+        <h1>Here be dragons</h1>
+      </div>
+      <div class="nav-container">
+        <nav>
+          <a href="/">Home</a> | <a href="/about">About</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main>
+      
+          <article class="post-content">
+            <h1>Como prever termos em uma busca?</h1>
+            <div class="post-meta">
+              <time datetime="2025-04-25T18:48:16.930Z">25/04/2025</time>
+            </div>
+            <p>Ontem um amigo mandou um <a href="https://www.tumblr.com/lumsel/712577333350023168/chinese-room-2">texto do Tumblr (SIM!)</a> sobre como o ChatGPT opera. Ou seja, como o ChatGPT entende o que vem depois e depois e depois. Como ele cria a &quot;cadeia de pensamento&quot; (não estou falando do <a href="https://mariofilho.com/chain-of-thought-prompting/"><em>chain of thought</em> dos novos assistentes</a>) que leva uma pergunta -&gt; resposta.</p>
+<p>De forma resumida, o ChatGPT, e qualquer sistema de LLM ou de previsão terminológica, trabalha com reforço de aprendizagem e reconhecimento de padrões. Algo que nós, humanos, somos muito bons, diga-se de passagem. O texto, em EN, fala sobre isso. Sobre um trabalhador imaginário que fica adivinhando caracteres chineses em uma tela. O que ele faz é receber um sinal de erro quando ele erra o caracter subsequente e um sinal de acerto quando ele acerta. Uma abordagem skuneriana, que funciona com pessoas e com máquinas.</p>
+<p>É mais ou menos o que pensamos sobre os problemas e soluções das previsões da época do Google (<a href="https://forbes.com.br/forbes-tech/2024/04/como-o-tiktok-virou-o-novo-google-para-a-geracao-z">que morreu como buscador</a> e <a href="https://www.reddit.com/r/singularity/comments/1jupl3r/deep_research_with_gemini_25_pro_outperforms/?rdt=53055">renasceu como empresa de IA</a>). Eu precisei desenhar um diagrama pra tentar explicar melhor, com palavras é sempre ruim (ou pior).</p>
+<p>Primeiro vamos entender como o Google previa as n-gramas de um texto, o que é de, forma extrapolada, o mesmo principio sobre o qual operam os assistentes:</p>
+<p><img src="https://raw.githubusercontent.com/mtgr18977/blog-app/refs/heads/leuaite-v1/images_posts/graph-1.jpeg" alt="Como o Google previa as n-gramas de uma busca"></p>
+<p>E depois como funcionam as n-gramas:</p>
+<p><img src="https://raw.githubusercontent.com/mtgr18977/blog-app/refs/heads/leuaite-v1/images_posts/graph-2.jpeg" alt="Como é uma n-grama"></p>
+<p>De forma resumida é isso, e por isso que os assistentes precisam de todos os dados possíveis. ELes precisam montar um corpus com os textos e aplicar diversos algoritmos de transformação, tokenização e recuperação da informação para, quando você perguntar o que é bom para queimadura de pele, ele conseguir entender o padrão de &quot;símbolos&quot; que você passou e buscar na base de conhecimento dele (contruída por décadas de internet aberta) o que mais se encaixa naquele padrão.</p>
+<p>É basicamente isso.</p>
+
+          </article>
+        
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+body {
+    background-color: #f0e6d2; /* Sepia background */
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.container {
+    background-color: #3d3d3d; /* Gray-lead background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow with blur */
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: justify;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+p, div {
+    text-align: justify;
+}
+
+a {
+    color: #f0e6d2; /* Sepia link color */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: white; /* White on hover */
+}
+
+header {
+    display: flex;
+    justify-content: space-around; /* Evenly distributed header links */
+    align-items: center;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.search-bar {
+    background-color: transparent; /* Transparent background */
+    border: 1px solid white;
+    border-radius: 20px; /* Rounded corners */
+    padding: 5px 10px;
+    color: white;
+    transition: all 0.3s ease;
+}
+.search-bar:hover{
+    border: 1px solid #f0e6d2;
+}
+.search-bar input{
+    background-color: transparent;
+    border: 0px;
+    color: white;
+}
+
+.pagination a {
+    background-color: #4d4d4d; /* Dark gray background */
+    color: white;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #f0e6d2; /* Sepia hover */
+}
+
+.post {
+    margin-bottom: 20px;
+}
+
+.post-title {
+    margin-bottom: 10px;
+}
